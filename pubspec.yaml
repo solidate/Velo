@@ -1,0 +1,37 @@
+name: velo
+description: A privacy-first, offline-first workout application.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.1.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_riverpod: ^2.4.9
+  riverpod_annotation: ^2.3.3
+  sqflite: ^2.3.0
+  path: ^1.8.3
+  path_provider: ^2.1.1
+  dio: ^5.3.4
+  connectivity_plus: ^5.0.2
+  uuid: ^4.2.1
+  intl: ^0.18.1
+  video_player: ^2.8.1
+  chewie: ^1.7.1
+  equatable: ^2.0.5
+  cupertino_icons: ^1.0.2
+  image_picker: ^1.2.1
+  file_picker: ^10.3.8
+  cached_network_image: ^3.4.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  build_runner: ^2.4.6
+  riverpod_generator: ^2.3.3
+
+flutter:
+  uses-material-design: true
