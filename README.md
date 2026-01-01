@@ -1,4 +1,5 @@
 # Velo: Personal Fitness Plan Organizer
+### **Full Disclosure**: This is a completely Vibe Coded Project
 
 Velo is a modern, privacy-first, offline-capable fitness application built with Flutter. It empowers you to create custom exercises, plan detailed weekly schedules, and perform guided workouts with ease.
 
