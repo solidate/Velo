@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
 import '../../../../domain/entities/scheduled_exercise.dart';
 import 'workout_session_state.dart';
 
@@ -17,14 +18,23 @@ class WorkoutSession extends _$WorkoutSession {
       _sessionTimer?.cancel();
     });
     
-    // Start session timer immediately or on start? 
-    // Requirement says "Active Workout Session".
-    // I'll start monitoring but only increment if status is inProgress.
     _sessionTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (state.status == WorkoutStatus.inProgress) {
         int newSetDuration = state.currentSetDurationSeconds;
         if (!state.isResting) {
           newSetDuration++;
+          
+          // Check target time
+          final targetTime = state.currentExercise?.targetTimeSeconds;
+          if (targetTime != null && targetTime > 0) {
+             final remaining = targetTime - newSetDuration;
+             if (remaining <= 5 && remaining >= 0) {
+                FlutterRingtonePlayer().play(fromAsset: "assets/sounds/notification.wav");
+             }
+             if (remaining==0) {
+                FlutterRingtonePlayer().stop();
+             }
+          }
         }
         state = state.copyWith(
           totalDurationSeconds: state.totalDurationSeconds + 1,
@@ -80,8 +90,17 @@ class WorkoutSession extends _$WorkoutSession {
     _restTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (state.restTimeRemaining > 0) {
         state = state.copyWith(restTimeRemaining: state.restTimeRemaining - 1);
+        
+        // Audio alert on countdown
+        if (state.restTimeRemaining <= 3 && state.restTimeRemaining > 0) {
+           // Simple beep or notification
+           // Use system notification sound for simplicity
+           FlutterRingtonePlayer().playNotification(); 
+        }
+        
       } else {
         timer.cancel();
+        FlutterRingtonePlayer().playNotification(); // End of rest
         _advanceToNextSetOrExercise();
       }
     });

@@ -6,7 +6,7 @@ part of 'workout_session_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$workoutSessionHash() => r'eae88b2dfcb4ecf75ec0f9cf01fbb07f6c14e8a3';
+String _$workoutSessionHash() => r'e836cc3e9bb427038c31b9b619f6eaa6e9b2982a';
 
 /// Copied from Dart SDK
 class _SystemHash {
