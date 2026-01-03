@@ -74,4 +74,4 @@ Velo is a modern, privacy-first, offline-capable fitness application built with 
 
 ## 📄 License
 
-This project is licensed under the MIT License.
+This project is licensed under the Apache 2.0 License.
